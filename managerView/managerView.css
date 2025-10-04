@@ -171,6 +171,7 @@ button.hidden{display:none}
   font-size: 0.95rem;
   cursor: pointer;
   transition: background-color 160ms ease, transform 160ms ease, box-shadow 160ms ease;
+  position: relative;top: 20px;left: -485px;
 }
 .trackmint-btn:hover {
   background: white;
