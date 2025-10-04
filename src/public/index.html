@@ -1,0 +1,80 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Expense App - Login</title>
+    <style>
+      body{font-family:system-ui, -apple-system, Segoe UI, Roboto, Arial; background:#f7fafc; display:flex; align-items:center; justify-content:center; height:100vh; margin:0}
+      .card{background:white; padding:24px; border-radius:12px; box-shadow:0 10px 30px rgba(0,0,0,0.08); width:340px}
+      h1{font-size:20px; margin:0 0 16px}
+      label{display:block; font-size:12px; color:#4a5568; margin-bottom:6px}
+      input{width:100%; padding:10px 12px; border:1px solid #e2e8f0; border-radius:8px; margin-bottom:12px}
+      button{width:100%; padding:10px 12px; border:none; border-radius:8px; background:#2563eb; color:white; font-weight:600; cursor:pointer}
+      button.secondary{background:#6b7280}
+      .row{display:flex; gap:8px}
+      .muted{font-size:12px; color:#6b7280; text-align:center; margin-top:10px}
+      .toast{margin:10px 0; padding:8px 10px; border-radius:8px; font-size:12px}
+      .toast.error{background:#fee2e2; color:#7f1d1d}
+      .toast.success{background:#dcfce7; color:#14532d}
+    </style>
+  </head>
+  <body>
+    <div class="card">
+      <h1>Login</h1>
+      <div id="toast"></div>
+      <label for="email">Email</label>
+      <input id="email" type="email" placeholder="you@example.com" />
+      <label for="password">Password</label>
+      <input id="password" type="password" placeholder="••••••••" />
+      <div class="row">
+        <button id="loginBtn">Login</button>
+        <button id="forgotBtn" class="secondary">Forgot password</button>
+      </div>
+      <p class="muted">Demo user: demo@example.com / Demo@12345</p>
+    </div>
+
+    <script>
+      const apiBase = '/api/auth';
+      const toast = (msg, type) => {
+        const el = document.getElementById('toast');
+        el.innerHTML = `<div class="toast ${type}">${msg}</div>`;
+      };
+
+      document.getElementById('loginBtn').addEventListener('click', async () => {
+        const email = document.getElementById('email').value.trim();
+        const password = document.getElementById('password').value;
+        try {
+          const res = await fetch(`${apiBase}/login`, {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ email, password })
+          });
+          const data = await res.json();
+          if (!res.ok) throw new Error(data.error || 'Login failed');
+          toast('Login successful', 'success');
+          console.log('Token:', data.token);
+        } catch (e) {
+          toast(e.message, 'error');
+        }
+      });
+
+      document.getElementById('forgotBtn').addEventListener('click', async () => {
+        const email = document.getElementById('email').value.trim();
+        if (!email) return toast('Enter your email first', 'error');
+        try {
+          const res = await fetch(`${apiBase}/forgot-password`, {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ email })
+          });
+          const data = await res.json();
+          if (!res.ok) throw new Error(data.error || 'Failed to send email');
+          toast('If the email exists, a password has been sent', 'success');
+        } catch (e) {
+          toast(e.message, 'error');
+        }
+      });
+    </script>
+  </body>
+</html>
