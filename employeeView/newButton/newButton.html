@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>Expense Submission</title>
+    <link rel="stylesheet" href="newButton.css" />
+</head>
+
+<body>
+
+    <header>
+        <button id="trackMintBtn" class="trackmint-btn">TrackMint</button>
+        <h1>🧾 Submit Expense</h1>
+    </header>
+
+    <main>
+        <div class="form-container">
+
+            <!-- Attach-Receipt Card -->
+            <div class="card attach-card">
+                <h3>Attach Receipt</h3>
+                <button id="attachBtn">📎 Upload</button>
+                <input type="file" id="fileInput" accept="image/*" hidden />
+                <div id="fileName" class="file-name"></div>
+
+                <!-- NEW: image preview -->
+                <img id="preview" class="preview hidden" alt="Receipt Preview" />
+            </div>
+
+
+            <!-- Fields Card -->
+            <div class="card fields-card">
+                <form id="expenseForm">
+
+                                                            <div class="status-buttons">
+                                                                <button type="button" class="status-btn status-draft">Draft</button>
+                                                                <button type="button" class="status-btn status-submitted">Submitted</button>
+                                                                <button type="button" class="status-btn status-approved">Approved</button>
+                                                            </div>
+
+                                                            <div class="row-two">
+                                            <div class="col">
+                                                <label for="category">Category</label>
+                                                <select id="category" required>
+                                                        <option value="">Select…</option>
+                                                        <option>Food</option>
+                                                        <option>Travel</option>
+                                                        <option>Office Supplies</option>
+                                                </select>
+                                            </div>
+                                            <div class="col">
+                                                <label for="expenseDate">Expense Date</label>
+                                                <input type="date" id="expenseDate" />
+                                            </div>
+                                        </div>
+
+                    <label for="amount">Amount</label>
+                    <div class="amount-group">
+                        <input type="number" id="amount" required />
+                        <select id="currency" title="currency">
+                            <option value="USD">$ USD</option>
+                            <option value="INR">₹ INR</option>
+                            <option value="EUR">€ EUR</option>
+                            <option value="GBP">£ GBP</option>
+                            <option value="JPY">¥ JPY</option>
+                            <option value="AUD">$ AUD</option>
+                            <option value="CAD">$ CAD</option>
+                            <option value="CNY">¥ CNY</option>
+                            <option value="SGD">$ SGD</option>
+                            <option value="NZD">$ NZD</option>
+                        </select>
+                    </div>
+
+                    <div class="row-two">
+                        <div class="col">
+                            <label for="remarks">Remarks</label>
+                            <input type="text" id="remarks" placeholder="Any notes…" />
+                        </div>
+
+                        <div class="col">
+                            <label for="paidBy">Paid By</label>
+                            <input type="text" id="paidBy" placeholder="Employee name or payer" />
+                        </div>
+                    </div>
+
+                    <label for="description">Description</label>
+                    <textarea id="description" rows="3" placeholder="Details…" required></textarea>
+
+                                        <div id="formError" class="form-error hidden" role="alert" aria-live="assertive"></div>
+                                        <div class="form-actions">
+                                            <button type="button" id="backBtn" onclick="window.location.href='../employeeView.html'">◀ Back to Employee View</button>
+                                            <button type="submit" id="submitBtn">✅ Submit</button>
+                                        </div>
+                </form>
+            </div>
+
+        </div>
+    </main>
+
+    <script src="newButton.js"></script>
+</body>
+
+</html>
