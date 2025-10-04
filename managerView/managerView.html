@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Manager Dashboard — TrackMint</title>
+  <link rel="stylesheet" href="managerView.css" />
+</head>
+
+<body>
+  <header>
+    <button id="trackMintBtn" class="trackmint-btn">TrackMint</button>
+    <div class="header-inner">
+      <div class="brand"><img src="./TrackMintSquare.svg" alt="" class="demo"></div>
+      <h1>Manager's View</h1>
+      .
+    </div>
+  </header>
+
+
+  <main class="layout">
+    <aside class="left-card card">
+      <h3>Attach Receipt</h3>
+      <div class="attach-wrap">
+        <label class="drop-zone" id="dropZone">
+          <input id="fileInput" type="file" accept="image/*" />
+          <div class="dz-content">
+            <svg class="dz-icon" width="36" height="36" viewBox="0 0 24 24" fill="none" aria-hidden>
+              <path d="M12 3v10" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"
+                stroke-linejoin="round" />
+              <path d="M8 7l4-4 4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"
+                stroke-linejoin="round" />
+              <path d="M21 15v2a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-2" stroke="currentColor" stroke-width="1.25"
+                stroke-linecap="round" stroke-linejoin="round" />
+            </svg>
+            <div class="dz-label">Drag & drop or click to upload</div>
+            <div id="fileName" class="file-name"></div>
+          </div>
+        </label>
+
+        <div id="previewWrap" class="preview-wrap hidden">
+          <img id="previewImg" alt="Receipt preview" />
+          <div class="preview-actions">
+            <button id="clearFile" class="ghost">Remove</button>
+          </div>
+        </div>
+      </div>
+    </aside>
+
+    <section class="right-col">
+      <section class="controls">
+        <input id="searchInput" type="text" placeholder="🔍 Search by employee name" />
+        <select id="statusFilter" aria-label="Filter by status">
+          <option value="All">All</option>
+          <option value="Pending">Pending</option>
+          <option value="Approved">Approved</option>
+          <option value="Rejected">Rejected</option>
+        </select>
+        <button id="newBtn" class="new-btn">+ New</button>
+      </section>
+
+      <section class="card table-card" aria-live="polite">
+        <div id="spinner" class="spinner hidden" aria-hidden="true" role="status" aria-label="Loading"></div>
+
+        <table>
+          <thead>
+            <tr>
+              <th>Approval Subject</th>
+              <th>Request Owner</th>
+              <th>Category</th>
+              <th>Request Status</th>
+              <th>Total Amount (₹)</th>
+              <th>Actions</th>
+            </tr>
+          </thead>
+          <tbody id="approvalTable"></tbody>
+        </table>
+
+        <div id="emptyState" class="empty hidden">No requests match your filters.</div>
+      </section>
+    </section>
+  </main>
+
+  <div id="newModal" class="modal hidden" role="dialog" aria-modal="true" aria-hidden="true">
+    <div class="modal-inner">
+      <h3>Create new request</h3>
+      <form id="newForm">
+        <label>Subject<input id="newSubject" type="text" required /></label>
+        <label>Owner<input id="newOwner" type="text" required /></label>
+        <label>Category<input id="newCategory" type="text" required /></label>
+        <label>Amount (₹)<input id="newAmount" type="number" step="0.01" required /></label>
+        <label>Receipt<input id="newFile" type="file" accept="image/*" /></label>
+        <div id="newPreviewWrap" class="preview-wrap hidden">
+          <img id="newPreview" alt="Receipt preview" />
+        </div>
+        <div class="modal-actions">
+          <button type="submit" class="approve-btn">Create</button>
+          <button type="button" id="newCancel">Cancel</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <div id="previewModal" class="modal hidden" role="dialog" aria-modal="true" aria-hidden="true">
+    <div class="modal-inner preview-modal">
+      <button id="previewClose" class="close-btn" aria-label="Close">✕</button>
+      <div class="preview-wrap large">
+        <img id="previewLarge" alt="Receipt preview large" />
+      </div>
+      <div class="modal-actions">
+        <button id="downloadBtn" class="new-btn">Download</button>
+      </div>
+    </div>
+  </div>
+
+  <div id="toast" class="toast" role="status" aria-live="polite"></div>
+
+  <script src="managerView.js"></script>
+</body>
+
+</html>

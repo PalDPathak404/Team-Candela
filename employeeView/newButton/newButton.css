@@ -1,0 +1,221 @@
+/* styles.css */
+:root {
+  --primary: #2d7b31;
+  --bg: #f4f6f8;
+  --card: #fff;
+  --text: #333;
+}
+
+* { box-sizing: border-box; margin:0; padding:0; }
+
+body {
+  font-family: 'Segoe UI', sans-serif;
+  background: var(--bg);
+  color: var(--text);
+}
+
+header {
+  background: var(--primary);
+  color: #fff;
+  padding: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+}
+
+header h1 {
+  font-size: 1.8rem;
+  font-weight: 600;
+  padding: 1rem 0;
+  text-align: center;
+  width: 100%;
+}
+
+/* styles.css */
+
+/* thumbnail styling */
+.preview {
+  display: block;
+  width: 100%;
+  max-height: 200px;
+  object-fit: contain;
+  margin-top: 0.75rem;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+.hidden {
+  display: none;
+}
+
+.threshold-line {
+  text-align: center;
+  border-top: 2px dashed red;
+  color: red;
+  margin: 0.5rem 1rem;
+  padding-top:0.5rem;
+  font-size: 0.9rem;
+}
+
+main {
+  padding: 1rem;
+}
+
+.form-container {
+  display: flex;
+  gap: 1rem;
+}
+
+.card {
+  background: var(--card);
+  border-radius: 8px;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+  padding: 1rem;
+}
+
+.attach-card {
+  flex: 1;
+  text-align: center;
+}
+
+.attach-card h3 {
+  margin-bottom: 1rem;
+}
+
+.attach-card button {
+  background: var(--primary);
+  color: #fff;
+  border:none;
+  padding: 0.5rem 1rem;
+  border-radius:4px;
+  cursor:pointer;
+}
+
+.attach-card .file-name {
+  margin-top: 0.75rem;
+  font-size: 0.9rem;
+  color: #555;
+}
+
+.fields-card {
+  flex: 2;
+}
+
+form {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+label {
+  font-weight: bold;
+  display: block;
+  margin-bottom: 0.5rem; /* gap between label and its input to match amount spacing */
+}
+
+input, select, textarea {
+  padding: 0.5rem;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  width: 100%;
+}
+
+.amount-group {
+  display: flex;
+  gap: 0.5rem;
+}
+
+.amount-group input { flex: 2; }
+.amount-group select { flex: 1; }
+
+#submitBtn {
+  margin-top: 1rem;
+  background: var(--primary);
+  color: #fff;
+  border: none;
+  padding: 1.5rem 6.2rem;
+  font-size: 0.95rem;
+  border-radius: 8px;
+  cursor: pointer;
+  align-self: center;
+  box-shadow: 0 2px 6px rgba(0,120,212,0.12);
+  transition: background-color 160ms ease, transform 160ms ease, box-shadow 160ms ease;
+}
+.trackmint-btn {
+  position: absolute;
+  left: 1rem;
+  top: 50%;
+  transform: translateY(-50%);
+  background: rgba(255,255,255,0.95);
+  color: #2D7B31;
+  border: none;
+  padding: 0.59rem 1.0rem; /* larger */
+  border-radius: 8px;
+  font-weight: 700;
+  font-size: 0.95rem;
+  cursor: pointer;
+  transition: background-color 160ms ease, transform 160ms ease, box-shadow 160ms ease;
+  
+}
+.trackmint-btn:hover { background: white; transform: translateY(calc(-50% - 2px)); box-shadow: 0 6px 12px rgba(0,0,0,0.12); }
+
+
+#submitBtn:hover {
+  background: #1b5e20;
+  transform: translateY(-2px);
+  box-shadow: 0 6px 12px rgba(27,94,32,0.16);
+}
+
+/* Form action wrapper to layout Back + Submit */
+.form-actions { display:flex; gap:0.95rem; justify-content:center; align-items:center; }
+
+/* Back button should visually match submit button */
+#backBtn {
+  background: #005da3; /* light green */
+  color: #ffffff;
+  border: none;
+  padding: 1.5rem 2.25rem;
+  font-size: 0.95rem;
+  border-radius: 8px;
+  cursor: pointer;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.08);
+  transition: background-color 160ms ease, transform 160ms ease, box-shadow 160ms ease;
+  margin-top: 1rem; /* to align with submit button */
+
+}
+
+#backBtn:hover {
+  background: #005fa3;
+  transform: translateY(-2px);
+  box-shadow: 0 6px 12px rgba(0,0,0,0.12);
+}
+
+/* two-column row for category + expense date */
+.row-two { display: flex; gap: 0.75rem; }
+.row-two .col { flex: 1; display: flex; flex-direction: column; }
+.row-two .col label { font-weight: bold; margin-bottom: 1.4rem; }
+
+/* Mobile */
+@media (max-width: 600px) {
+  .form-container {
+    flex-direction: column;
+  }
+}
+
+/* status buttons above the category/date */
+.status-buttons { display:flex; gap:0.5rem; margin-bottom:0.5rem; }
+.status-btn { padding: 0.95rem 1.25rem; border: none; color: #fff; border-radius: 6px; cursor: pointer; font-weight: 600; transition: background-color 160ms ease, transform 160ms ease, box-shadow 160ms ease; }
+.status-draft { background: #f39c12; }
+.status-draft:hover { background: #d8870f; transform: translateY(-2px); box-shadow: 0 6px 12px rgba(243,156,18,0.12); }
+.status-submitted { background: #3498db; }
+.status-submitted:hover { background: #2b80bf; transform: translateY(-2px); box-shadow: 0 6px 12px rgba(52,152,219,0.12); }
+.status-approved { background: #009a0a; color: rgb(255, 255, 255); }
+.status-approved:hover { background: #008407; transform: translateY(-2px); box-shadow: 0 6px 12px rgba(0,154,10,0.12); }
+/* active state for selected status button */
+.status-btn.active { box-shadow: 0 8px 18px rgba(0,0,0,0.12); transform: translateY(-2px); opacity: 0.98; }
+/* inline form error */
+.form-error { color: #a94442; background: #fff0f0; border: 1px solid #f2c6c6; padding: 0.5rem; border-radius: 6px; margin-bottom: 0.6rem; font-weight: 600; }
+.form-error.hidden { display: none; }
+/* stronger highlighted state when user touches/clicks after error appears */
+.form-error.highlight { background: #ffd6d6; border-color: #ff4d4d; color: #7a0b0b; box-shadow: 0 6px 14px rgba(255,77,77,0.12); }
