@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Premium Dark Green Gradient Access Management Table</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body onload="loadTableData()">
+    <div class="nav">
+        <img src="asstes/TrackMintSquare.svg" alt="" width="100px">
+        <h2>User Access Management | Secure Portal</h2>
+    </div>
+    <div id="feedbackMessage"></div>
+
+    <div class="btn-container">
+        <button class="storage-btn" onclick="saveTableData(event)">Save All Data</button>
+        <button class="storage-btn" onclick="addNewRow()"> Add New User</button>
+    </div>
+
+    <div class="table-container">
+        <table id="userTable">
+            <thead>
+                <tr>
+                    <th>User</th>
+                    <th>Role</th>
+                    <th>Manager</th>
+                    <th>Email</th>
+                    <th>Action</th>
+                </tr>
+            </thead>
+            <tbody id="userTableBody">
+            </tbody>
+        </table>
+    </div>
+    <script src="script.js"></script>
+</body>
+
+</html>
